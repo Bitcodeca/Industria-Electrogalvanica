@@ -70,7 +70,7 @@
             ga('send', 'pageview');
         </script>
     </head>
-    <body>
+    <body ng-app="contactApp">
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
@@ -241,30 +241,28 @@
                                     <a href="https://www.instagram.com/indelectrogalvanica/" target="_blank"><i class="fa fa-instagram fa-2x"></i>@indelectrogalvanica</a></p>
                             </div>
                             <div class="col-md-6 paddinginner">
-                                <form role="form" class="col-xs-12 col-md-8 col-md-offset-2 go-right" action="phpmailer/mail.php" method="post">
-
-                                   <h4 class="letrablanca text-left letraform">Nombre</h4>
-                                    <div class="form-group">
-                                        <input id="name" name="name" type="text" class="form-control" required>
-                                    </div>
-
-                                    <h4 class="letrablanca text-left letraform">Correo</h4>
-                                    <div class="form-group">
-                                        <input id="email" name="email" type="email" class="form-control" required>
-                                    </div>
-                                    
-                                    <h4 class="letrablanca text-left letraform">Teléfono</h4>
-                                    <div class="form-group">
-                                        <input id="telefono" name="telefono" type="number" class="form-control" required>
-                                    </div>
-                                    
-                                    <h4 class="letrablanca text-left letraform">Mensaje</h4>
-                                    <div class="form-group">
-                                        <textarea id="message" name="message" class="form-control" rows="5" style="resize: none;" required></textarea>
-                                    </div>
-                                    
-                                    <button class="btn btn-default" type="submit" formtarget="_new"><i class="fa fa-send-o"> </i> Enviar</button>
-                                </form>
+                               <div ng-controller="ContactController">
+                                    <form ng-submit="submit(contactform)" name="contactform" method="post" action="" role="form">
+                                        <h4 class="letrablanca text-left letraform">Nombre</h4>
+                                        <div class="form-group" ng-class="{ 'has-error': contactform.nombre.$invalid && submitted }">
+                                            <input id="name" name="name" type="text" class="form-control" ng-model="formData.nombre" required>
+                                        </div>
+                                        <h4 class="letrablanca text-left letraform">Correo</h4>
+                                        <div class="form-group" ng-class="{ 'has-error': contactform.email.$invalid && submitted }">
+                                            <input id="email" name="email" type="email" class="form-control" ng-model="formData.email" required>
+                                        </div>
+                                        <h4 class="letrablanca text-left letraform">Teléfono</h4>
+                                        <div class="form-group" ng-class="{ 'has-error': contactform.telefono.$invalid && submitted }">
+                                            <input id="telefono" name="telefono" type="number" class="form-control" ng-model="formData.telefono" required>
+                                        </div>
+                                        <h4 class="letrablanca text-left letraform">Mensaje</h4>
+                                        <div class="form-group" ng-class="{ 'has-error': contactform.message.$invalid && submitted }">
+                                            <textarea  id="message" name="message" class="form-control" rows="5" style="resize: none;"ng-model="formData.message" required></textarea>
+                                        </div>
+                                            <button class="btn btn-contacto" type="submit" formtarget="_new"><i class="fa fa-plane"></i> Enviar</button>
+                                    </form>
+                                        <p ng-class="result" style="padding: 15px; margin: 0;">{{ resultMessage }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -288,6 +286,9 @@
         <script src="js/jquery.scrolly.min.js"></script>
         <script src="js/TweenMax.min.js"></script>
         <script src="js/share.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
+        <script src="app.js"></script>
+        <script src="controllers.js"></script>
         <script>
             new WOW().init();
         </script>
