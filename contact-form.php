@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
-require_once '/home2/paginasw/public_html/indelectrogalvanica.com.ve/phpmailer/PHPMailerAutoload.php';
+require_once '/home/bitcodeweb/public_html/indelectrogalvanica.com.ve/phpmailer/PHPMailerAutoload.php';
 
 if (isset($_POST['nombre']) && isset($_POST['email']) && isset($_POST['telefono']) && isset($_POST['message'])) {
 
